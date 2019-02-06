@@ -1,184 +1,205 @@
 
-/*styling for index.html and general*/
+* {
+    box-sizing: border-box
+}
+
 body {
-    display: flex;
-    flex-direction: column;
-    background-image: url("../Images/prism.png");
-    margin: 0px;
-    color: #777777;
-    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    background: url("../Images/prism.png");
+    font-size: 18px;
+    line-height: 34px;
+    font-family: 'Arial', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    color: #777;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    clear: both;
+}
+
+h1, h2, h3, p {
+    margin-bottom: 20px;
+}
+
+p:last-child{
+    margin-bottom: 0;
+}
+
+h1, h2, h3 {
+    font-family: 'Georgia', Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    color: #4aaaa5;
 }
 
 h1 {
-    font-family: 'Georgia', Times, "Times New Roman", serif;
-
+    font-size: 30px;
+    line-height: 49px;
+    border-bottom:  3px solid #ddd;
+    padding-bottom: 20px;
 }
-.myname {
+
+h2, h3 {
+    font-size: 22px;
+}
+
+/*header*/
+#masthead {
+    background: #fff;
+    margin: 0 0 30px;
+    z-index: 99;
+    color: #fff;
+    overflow: auto;
+    border-bottom: 2px solid #ccc;
+    position: fixed;
+    width: 100%;
+}
+
+#logo {
+    width: 250px;
+    height: 90px;
     background: #4aaaa5;
-    color: #ffffff;
-    padding: 0px 10px;
-    margin: auto auto auto 0;
-}
-
-hr {
-    color: #cccccc;
-    background: #cccccc;
-}
-.main {
-    width: 960px;
-    background: #ffffff;
-    border-style: solid;
-    border-color: #dddddd;
-    margin: 40px auto 40px auto;
-}
-
-.maincontent {
-    padding: 20px;
-}
-
-#maincontentheader {
-    color: #4aaaa5;
-}
-.main p {
-    flex-wrap: wrap;
-}
-
-.main img {
     float: left;
-    margin: 12px;
-}
-
-/*header styling*/
-.header {
-    background: #ffffff;
-    display: flex;;
-    border-style: solid;
-    border-color: #cccccc;
-    border-width: 0px 0px 1px 0px;
-}
-
-.headercontent {
-    display: inline-flex;
-    width: 960px;
-    margin: auto;
-}
-
-.navigation{
-    margin-left: auto;
-    display: flex;
-}
-
-.navlist {
-    list-style: none;
-    display: inline-flex;
-    margin: auto;
-}
-
-.navitem {
-    margin: 5px;
-}
-
-a:link, a:visited {
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
+    text-align: center;
+    line-height: 90px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 30px;
     text-decoration: none;
-    color: #777777;
 }
 
-a:hover {
-    font-weight: bold;
+nav {
+    float: right;
+    margin-top: 25px;
 }
 
-/*footer styling*/
-.footer {
-    background: #666666;
-    margin-top: auto;
-    border-top: solid 5px #4aaaa5;
-    display: flex;
+nav a {
+    color: #999;
+    text-decoration: none;
+    margin-left: 15px;
+    display: inline-block;
+    border-left: 1px solid #efefef;
+    padding-left: 15px;
+    line-height: 18px;
 }
 
-.footercontent {
-    color: white;
-    margin: auto;
-}
-/*Contact Page Styling*/
-form {
-    display: flex;
-    flex-direction: column;
+nav a:first-child {
+    border-left: 0 none;
 }
 
-input {
-    border: solid #cccccc 1px;
-    height: 20px;
+/*main*/
+#main-container {
+    padding-top: 130px;
 }
-#messageinput {
+
+.main-section {
+    background: #fff;
+    padding: 30px;
+    margin: 0 0 40px 0;
+    width: 100%;
+    float: left;
+    border: 1px solid #ddd;
+}
+
+.auth-image {
+    width: 200px;
+    height: auto;
+    margin-top: 10px;
+    float: left;
+    margin-right: 25px;
+}
+
+h3, .sidebar, h2 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 15px;
+    line-height: 22px;
+}
+
+/*footer*/
+
+footer {
+    background: #666;
+    color: #fff;
+    padding: 30px 0;
+    clear: both;
+    border-top: 8px solid #4aaaa5;
+    color: #ccc;
+    font-size: 12px;
+    text-align: center;
+}
+
+/*portfolio*/
+
+.work {
+    width: 274px;
+    overflow: auto;
+    position: relative;
+    float: left;
+    margin: 20px 0 25px;
+}
+
+.work:nth-child(even) {
+    margin-right: 40px;
+}
+
+.work img {
+    width: 100%;
+    border: 0 none;
+    opacity: .8;
+}
+
+.work h3 {
+    border-bottom: 0;
+    background: #4aaaa5;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    padding: 15px;
+    width: 100%;
+    line-height: 30px;
+    margin-bottom: 0;
+    font-weight: 300;
+}
+
+/*contact*/
+
+#contact-form ul {
+    margin-bottom: 20px;
+}
+
+#contact-form li {
+    margin-bottom: 10px;
+}
+
+label, 
+input[type=text],
+input[type=email],
+textarea {
+    display: block;
+    width: 100%;
+}
+
+input[type=text],
+input[type=email],
+textarea {
+    height: 35px;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+textarea {
     height: 200px;
 }
 
-#submit {
-    text-decoration: none;
+input[type=submit] {
     background: #4aaaa5;
-    height: 40px;
-    color: white;
-    width: 20%
-}
-
-/* portfolio page styling*/
-.portfoliocontainer {
-    display: grid;
-    grid-template-rows: repeat(3, auto);
-    grid-template-columns: repeat(3, auto);
-}
-
-.portfolioobject {
-    height: 240px;
-    margin: 10px;
-    display: flex;
-}
-
-.textcontainer {
-    background: #4aaaa5;
-    height: 40px;
-    display: flex;
-    margin: auto 0px 5px 0px;
-    flex-grow: 1;
-}
-
-.portfolioobject p {
-    margin: auto;
-    color: #ffffff;
-}
-
-#object1 {
-    background-image: url("../Images/abstract-q-g-300-240-10.jpg");
-}
-
-#object2 {
-    background-image: url("../Images/abstract-q-g-300-240-4.jpg");
-}
-
-#object3 {
-    background-image: url("../Images/abstract-q-g-300-240-8.jpg");
-}
-
-#object4 {
-    background-image: url("../Images/people-q-g-300-240-2.jpg");
-}
-
-#object5 {
-    background-image: url("../Images/people-q-g-300-240-8.jpg");
-}
-
-@media screen and (max-width: 960px){
-    
-    .portfoliocontainer{
-        grid-template-columns: repeat(1, auto);
-        width: 350px;
-    }
-
-    .main {
-        width: 400px;
-    }
-
-    .main img {
-        float: none;
-    }
+    border: 0 none;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 30px;
+    cursor: pointer
 }
