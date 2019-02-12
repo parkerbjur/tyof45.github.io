@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body onload="initializeScreen()" onkeydown="findMoveDirection(event)" >
+    <canvas  id="myCanvas" width="400px" height="400px"></canvas>
+    <script>
+// makes canvas and introduces arrays 
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#000000"
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        var food = canvas.getContext("2d");
+        let foodX = [Math.floor((Math.random() * 20)) * 20];
+        let foodY = [Math.floor((Math.random() * 20)) * 20];
+
+        var snake = canvas.getContext("2d");
+        let snakeY = [200];
+        let snakeX = [200];
+
+        let eraseSnake = canvas.getContext("2d");
+
+        let moveDirection = [];
+
+// generates random food position
+        function generateRandomFoodLocation () {
+            foodX.unshift(Math.floor((Math.random() * 20)) * 20)
+            foodY.unshift(Math.floor((Math.random() * 20)) * 20)
+            food.fillStyle = "#FF0000";
+            food.fillRect(foodX[0] , foodY[0], 20, 20);
+            for(i = 1; i < snakeX.length; i++){
+                if (foodX[0] == snakeX[i] && foodY[0] == snakeY[i]){
+                    foodX.unshift(Math.floor((Math.random() * 20)) * 20)
+                    foodY.unshift(Math.floor((Math.random() * 20)) * 20)
+                    food.fillStyle = "#FF0000";
+                    food.fillRect(foodX[0] , foodY[0], 20, 20);
+                }
+            }
+        }
+
+// set random start direction
+        function findStartDirection () {
+            let x = Math.floor(Math.random() * 4)
+            switch(x) {
+                case 1: 
+                    moveDirection.unshift("up");
+            break;
+                case 2:
+                    moveDirection.unshift("down")
+            break;
+                case 3: 
+                    moveDirection.unshift("left")
+            break;
+                case 0: 
+                    moveDirection.unshift("right")
+            break;
+            }
+        }
+
+// anytime a key is pressed this function will run and re-define moveDirection as either up, down, left, or right 
+// (or do nothing if a key other than an arrow is pressed)
+        function findMoveDirection (){
+            switch(event.keyCode) {
+                case 40: 
+                    moveDirection.unshift("down");
+                    moveDirection.pop();
+            break; 
+                case 39: 
+                    moveDirection.unshift("right");
+                    moveDirection.pop();
+            break;
+                case 38: 
+                    moveDirection.unshift("up");
+                    moveDirection.pop();
+            break; 
+                case 37: 
+                    moveDirection.unshift("left");
+                    moveDirection.pop();
+            break; 
+            } 
+            console.log(moveDirection)
+        }
+
+//based on the var Move Position, this function adds a square in the direction the snake is headed and removes a square from 
+//the end of the snake
+        function updateSnakePosition(){
+                switch(moveDirection[0]){
+                case "left":
+                    snakeX.unshift(snakeX[0] - 20);
+                    snakeY.unshift(snakeY[0]);
+                break;
+                case "right":
+                    snakeX.unshift(snakeX[0] + 20);
+                    snakeY.unshift(snakeY[0]);
+                break;
+                case "up":
+                    snakeY.unshift(snakeY[0] - 20);
+                    snakeX.unshift(snakeX[0]);
+                break;
+                case "down":
+                    snakeY.unshift(snakeY[0] + 20);
+                    snakeX.unshift(snakeX[0]);
+            }
+            snake.fillStyle = "#7CFC00";
+            snake.fillRect(snakeX[0], snakeY[0], 20, 20);
+            eraseSnake.fillStyle = "#000000";
+            eraseSnake.fillRect(snakeX[snakeX.length - 1], snakeY[snakeX.length - 1], 20, 20);
+            snakeX.pop();
+            snakeY.pop();
+            }
+
+//checks for collisions with food first, then the wall, then itself
+        function checkForCollisions() {
+            if (snakeX[0] == foodX[0] && snakeY[0] == foodY[0]) {
+                generateRandomFoodLocation()
+                snakeY.unshift(snakeY[0]);
+                snakeX.unshift(snakeX[0]);
+            } else if (snakeX[0] < 0 || snakeX[0] > 380 || snakeY[0] < 0 || snakeY[0] > 380){
+                location.reload();
+            } else for(i = 1; i < snakeX.length; i++){
+                if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i]){
+                    location.reload();
+                }
+            }}
+
+//on load it renders the screen then runs through the loop of making a new snake then checking for collisions
+        function initializeScreen (){
+            snake.fillStyle = "#7CFC00";
+            snake.fillRect(snakeX[0], snakeY[0], 20, 20);
+            generateRandomFoodLocation()
+            findStartDirection()
+            setInterval(function() {
+                updateSnakePosition();
+                checkForCollisions();
+            }, 100)
+        }
+    </script>
+</body>
+</html>
